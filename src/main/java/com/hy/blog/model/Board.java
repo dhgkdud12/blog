@@ -1,11 +1,21 @@
 package com.hy.blog.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.List;
 
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 public class Board {
 
@@ -26,6 +36,11 @@ public class Board {
     @JoinColumn(name="userId")
     private User user; //DB는 오브젝트를 저장할 수 없다. FK, 자바는 오브젝트를 저장할 수 있다.
 
+    @OneToMany(mappedBy = "board" ,fetch=FetchType.EAGER) //mappedBy 연관관계의 주인이 아니다 (난 FK가 아니예요) DB에 칼럼을 만들지 마세요.
+//    @JoinColumn(name="replyId") 필요없음
+    private List<Reply> reply; //조인문을 통해 값을 얻기 위함.
+    
     @CreationTimestamp
     private Timestamp createDate;
+
 }
