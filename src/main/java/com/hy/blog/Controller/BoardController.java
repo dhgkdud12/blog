@@ -8,7 +8,7 @@ public class BoardController {
 
     @GetMapping({"", "/"}) //blog/ 랑 blog
     public String index() {
-        // /WEB-INF/views/index.jsp
+        // /WEB-INF/views/joinForm.jsp
         return "index";
     }
 }
