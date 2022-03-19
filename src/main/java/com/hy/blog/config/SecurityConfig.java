@@ -4,6 +4,7 @@ import com.hy.blog.config.auth.PrincipalDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -29,6 +30,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     // 시큐리티가 대신 로그인 해주는데 password를 가로채기를 하는데
     // 해당 password가 뭐로 해쉬가 되어 회원가입이 되었는지 알아야
     // 같은 해쉬로 암호화해서 DB에 있는 해쉬랑 비교할 수 있음.
+    
+    @Bean //DI 등록
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
+    }
 
 
     @Override
@@ -41,7 +48,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()  //csrf 토큰 비활성화 (테스트시 걸어두는게 좋음)
                 .authorizeRequests()
-                .antMatchers("/","/auth/**", "/js/**","/css/**","/image/**" )// "/auth/loginForm", "/auth/joinForm"
+                .antMatchers("/","/auth/**", "/js/**","/css/**","/image/**" ,"/dummy/**")// "/auth/loginForm", "/auth/joinForm"
                 .permitAll()
                 .anyRequest()
                 .authenticated() //접근제한
