@@ -22,6 +22,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private PrincipalDetailService principalDetailService;
 
+    @Bean//DI 등록
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
+    }
+
     @Bean //IoC가 됨.
     public BCryptPasswordEncoder encodePWD() {
         return new BCryptPasswordEncoder();
@@ -30,12 +36,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     // 시큐리티가 대신 로그인 해주는데 password를 가로채기를 하는데
     // 해당 password가 뭐로 해쉬가 되어 회원가입이 되었는지 알아야
     // 같은 해쉬로 암호화해서 DB에 있는 해쉬랑 비교할 수 있음.
-    
-    @Bean //DI 등록
-    @Override
-    public AuthenticationManager authenticationManagerBean() throws Exception {
-        return super.authenticationManagerBean();
-    }
 
 
     @Override

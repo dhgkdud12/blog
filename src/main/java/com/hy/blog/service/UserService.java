@@ -4,11 +4,6 @@ import com.hy.blog.Repository.UserRepository;
 import com.hy.blog.model.RoleType;
 import com.hy.blog.model.User;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,8 +20,13 @@ public class UserService {
     //    @Autowired
     final private BCryptPasswordEncoder encoder;
 
-    final private AuthenticationManager authenticationManager;
-
+    @Transactional(readOnly = true)
+    public User 회원찾기(String username) {
+        User user = userRepository.findByUsername(username).orElseGet(()->{
+            return new User(); //회원 없으면 빈객체 반환 User("aa","aa")로 강제로 만들어도됨.
+        });
+        return user;
+    }
 
     @Transactional
     public void 회원가입(User user) {
@@ -45,17 +45,18 @@ public class UserService {
         User persistance = userRepository.findById(user.getId()).orElseThrow(()-> {
             return new IllegalArgumentException("회원 찾기 실패");
         });
-        String rawPassword = user.getPassword();
-        String encPassword = encoder.encode(rawPassword); //비밀번호 암호화
-        persistance.setPassword(encPassword); //암호화된 비밀번호 저장
-        persistance.setEmail(user.getEmail()); //이메일 저장
+
+        //Validate 체크 => oauth에 값이 없으면 수정 가능
+        if (persistance.getOauth()==null || persistance.getOauth().equals("")){
+            String rawPassword = user.getPassword();
+            String encPassword = encoder.encode(rawPassword); //비밀번호 암호화
+            persistance.setPassword(encPassword); //암호화된 비밀번호 저장
+            persistance.setEmail(user.getEmail()); //이메일 저장
+        }
+
 
         // 회원수정 함수 종료시 = 서비스 종료 = 트랜잭션 종료 = commit이 자동으로 됩니다.
         // 영속화된 persistence 객체의 변화가 감지되면 더티체킹이 되어 update문을 날려줌.
-
-        //세션 등록
-        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
-        SecurityContextHolder.getContext().setAuthentication(authentication);
 
     }
 }
