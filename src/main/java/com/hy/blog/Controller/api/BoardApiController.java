@@ -3,6 +3,7 @@ package com.hy.blog.Controller.api;
 import com.hy.blog.config.auth.PrincipalDetail;
 import com.hy.blog.dto.ResponseDto;
 import com.hy.blog.model.Board;
+import com.hy.blog.model.Reply;
 import com.hy.blog.model.User;
 import com.hy.blog.service.BoardService;
 import com.hy.blog.service.UserService;
@@ -35,5 +36,11 @@ public class BoardApiController {
     public ResponseDto<Integer> update(@PathVariable int id, @RequestBody Board board) {
         boardService.글수정하기(id,board);
         return new ResponseDto<Integer>(HttpStatus.OK.value(),1);
+    }
+
+    @PostMapping("/api/board/{boardId}/reply")
+    public ResponseDto<Integer> replySave(@PathVariable int boardId, @RequestBody Reply reply, @AuthenticationPrincipal PrincipalDetail principal) {
+        boardService.댓글쓰기(principal.getUser(), boardId, reply);
+        return new ResponseDto<Integer>(HttpStatus.OK.value(),1); //자바오브젝트를 JSON으로 변환해서 리턴(Jackson)
     }
 }
