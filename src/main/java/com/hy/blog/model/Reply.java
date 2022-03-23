@@ -1,5 +1,6 @@
 package com.hy.blog.model;
 
+import com.hy.blog.dto.ReplySaveRequestDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -33,4 +34,11 @@ public class Reply { //답변
 
     @CreationTimestamp
     private Timestamp createDate;
+
+//    public void update(User user, Board board, String content) {
+//        setUser(user);
+//        setBoard(board);
+//        setContent(content);
+//
+//    }
 }
