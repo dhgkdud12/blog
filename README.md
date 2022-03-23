@@ -1,16 +1,20 @@
 # blog
 Spring Boot를 이용해 블로그 만들기 학습(회원가입, 로그인, 카카오 로그인 API, 게시물 등록, 조회, 수정, 삭제, 댓글쓰기, 삭제)
-![image](https://user-images.githubusercontent.com/75581904/159705092-de7e5ff7-6a64-49e3-8b4d-9af2d84e9905.png)
 
-![image](https://user-images.githubusercontent.com/75581904/159704871-e2753208-9342-48a9-9670-5894c1d32508.png)
+회원가입
+![image](https://user-images.githubusercontent.com/75581904/159707924-39754187-514d-4ba1-b2a2-7365002d2529.png)
 
-![image](https://user-images.githubusercontent.com/75581904/159705204-78e76434-a0d4-4bc0-b7a3-92e68fb598d2.png)
+로그인(회원등록한 회원 로그인이나 카카오 로그인 가능)
+![image](https://user-images.githubusercontent.com/75581904/159708027-534f032a-a459-4d51-ab6d-9fedcca92624.png)
 
-![image](https://user-images.githubusercontent.com/75581904/159705274-2621cc89-3743-485f-9250-08c81146f424.png)
+게시물 등록
+![image](https://user-images.githubusercontent.com/75581904/159708122-9836c8ec-4592-4211-9121-48a6599b6605.png)
 
-![image](https://user-images.githubusercontent.com/75581904/159705338-ff176bae-4387-470e-86da-1bd369ed63bd.png)
+게시물 조회(페이징 기능)
+![image](https://user-images.githubusercontent.com/75581904/159708186-8c63773c-72df-4d07-8e71-3c506a60d976.png)
 
-![image](https://user-images.githubusercontent.com/75581904/159705521-ce999d05-2f24-4d83-b9ff-8e85b6a0d326.png)
+게시글 상세조회(작성자 본인 게시물 수정, 삭제 가능)
+![image](https://user-images.githubusercontent.com/75581904/159708334-9e4c6005-f629-463c-9362-739f55c9069d.png)
 
-![image](https://user-images.githubusercontent.com/75581904/159707598-fffcad04-28d0-44c3-b783-65d6c28d9423.png)
-
+댓글 쓰기 - 댓글 작성자 본인만 삭제 가능
+![image](https://user-images.githubusercontent.com/75581904/159708669-ff25e530-0c04-4cf7-8fa9-5e13d9cde8ae.png)
