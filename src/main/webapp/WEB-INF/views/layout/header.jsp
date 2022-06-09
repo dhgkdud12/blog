@@ -22,41 +22,38 @@
 </head>
 <body>
 <%--<h1>${principal}</h1>--%>
-<nav class="navbar navbar-expand-md bg-dark navbar-dark">
-    <a class="navbar-brand" href="/">Hy</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+<ul id="nav3" class="nav justify-content-end bg-light">
+    <li class="nav-item">
+        <a class="nav-link active" href="/">Home</a>
+    </li>
+    <c:choose>
+        <%--            <c:when test="${empty sessionScope.principal}">--%>
+        <c:when test="${empty principal}">
+            <li class="nav-item">
+                <a class="nav-link" href="/auth/loginForm">로그인</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/auth/joinForm">회원가입</a>
+            </li>
+        </c:when>
+        <c:otherwise>
+            <li class="nav-item">
+                <a class="nav-link" href="/board/saveForm">글쓰기</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/board/myWriteForm">내가 쓴 글</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/board/myReplyForm">내가 쓴 댓글</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/user/updateForm">회원정보</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/logout">로그아웃</a>
+            </li>
+        </c:otherwise>
+    </c:choose>
 
-        <c:choose>
-            <%--            <c:when test="${empty sessionScope.principal}">--%>
-            <c:when test="${empty principal}">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/auth/loginForm">로그인</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/auth/joinForm">회원가입</a>
-                    </li>
-                </ul>
-            </c:when>
-            <c:otherwise>
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/board/saveForm">글쓰기</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/user/updateForm">회원정보</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/logout">로그아웃</a>
-                    </li>
-                </ul>
-            </c:otherwise>
-        </c:choose>
-
-
-    </div>
-</nav>
+</ul>
 <br/>

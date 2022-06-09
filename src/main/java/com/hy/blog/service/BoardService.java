@@ -4,12 +4,15 @@ import com.hy.blog.Repository.BoardRepository;
 import com.hy.blog.Repository.ReplyRepository;
 import com.hy.blog.dto.ReplySaveRequestDto;
 import com.hy.blog.model.Board;
+import com.hy.blog.model.Reply;
 import com.hy.blog.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 public class BoardService {
@@ -81,5 +84,13 @@ public class BoardService {
     @Transactional
     public void 댓글삭제(int replyId) {
         replyRepository.deleteById(replyId);
+    }
+
+    public List<Board> 내글가져오기(int userId) {
+        return boardRepository.myBoards(userId);
+    }
+
+    public List<Reply> 내댓글가져오기(int userId) {
+        return replyRepository.myReplys(userId);
     }
 }

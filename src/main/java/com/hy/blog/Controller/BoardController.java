@@ -44,4 +44,16 @@ public class BoardController {
     public String saveForm() {
         return "board/saveForm";
     }
+
+    @GetMapping("/board/myWriteForm")
+    public String myWriteForm(@AuthenticationPrincipal PrincipalDetail principal, Model model) {
+        model.addAttribute("boards", boardService.내글가져오기(principal.getUser().getId()));
+        return "board/myWriteForm";
+    }
+
+    @GetMapping("/board/myReplyForm")
+    public String myReplyForm(@AuthenticationPrincipal PrincipalDetail principal, Model model) {
+        model.addAttribute("replys", boardService.내댓글가져오기(principal.getUser().getId()));
+        return "board/myReplyForm";
+    }
 }
