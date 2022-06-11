@@ -3,6 +3,20 @@
 
 <%@ include file="layout/header.jsp"%>
 <div class="container">
+    <div class="form-row">
+        <div class="col-7"></div>
+        <div class="form-group col-5">
+            <form class="form-inline mr-sm-2" >
+                <select class="form-control" style="width: 30%;">
+                    <option>제목</option>
+                    <option>내용</option>
+                    <option>글쓴이</option>
+                </select>
+                <input class="form-control mr-sm-2" type="text" id="search-text" style="width: 50%;">
+                <button id="btn-search" class="btn btn-success">검색</button>
+            </form>
+        </div>
+    </div>
 
     <c:forEach var="board" items="${boards.content}">
         <div class="card m-2" >
@@ -13,6 +27,8 @@
         </div>
     </c:forEach>
 
+
+<%--페이징--%>
     <ul class="pagination justify-content-center">
         <c:choose>
             <c:when test="${boards.first}">
@@ -34,7 +50,7 @@
     </ul>
 
 </div>
-
+<script src="/js/board.js"></script>
 <%@ include file="layout/footer.jsp"%>
 
 
