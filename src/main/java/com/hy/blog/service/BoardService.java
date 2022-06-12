@@ -35,6 +35,7 @@ public class BoardService {
         return boardRepository.findAll(pageable);
     }
 
+
     @Transactional(readOnly = true)
     public Board 글상세보기(int id) {
         return boardRepository.findById(id)
@@ -92,5 +93,20 @@ public class BoardService {
 
     public List<Reply> 내댓글가져오기(int userId) {
         return replyRepository.myReplys(userId);
+    }
+
+    @Transactional(readOnly = true)
+    public List<Board> 글제목검색(String title) {
+        return boardRepository.searchBoardByTitle(title);
+    }
+
+    @Transactional(readOnly = true)
+    public List<Board> 글내용검색(String content) {
+        return boardRepository.searchBoardByContent(content);
+    }
+
+    @Transactional(readOnly = true)
+    public List<Board> 글쓴이검색(String user) {
+        return boardRepository.searchBoardByUser(user);
     }
 }
