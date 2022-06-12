@@ -6,13 +6,13 @@
     <div class="form-row">
         <div class="col-7"></div>
         <div class="form-group col-5">
-            <form class="form-inline mr-sm-2" >
-                <select class="form-control" style="width: 30%;">
+            <form class="form-inline mr-sm-2" action="/board/search">
+                <select class="form-control" name="type" style="width: 30%; margin:4px;">
                     <option>제목</option>
                     <option>내용</option>
                     <option>글쓴이</option>
                 </select>
-                <input class="form-control mr-sm-2" type="text" id="search-text" style="width: 50%;">
+                <input class="form-control mr-sm-2" name ="keyword" style="width: 50%;">
                 <button id="btn-search" class="btn btn-success">검색</button>
             </form>
         </div>
